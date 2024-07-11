@@ -4,3 +4,6 @@
 [submodule "dk/themes/hugo-bearblog"]
 	path = dk/themes/hugo-bearblog
 	url = https://github.com/janraasch/hugo-bearblog.git
+[submodule "dk/public"]
+	path = dk/public
+	url = https://github.com/DikiFive/DikiFive.github.io.git

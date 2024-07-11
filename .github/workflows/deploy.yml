@@ -39,7 +39,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3 # 使用 peaceiris 的 actions-gh-pages 动作来部署
         with:
           # 下面是传递给 actions-gh-pages 动作的参数
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # 使用 GitHub 仓库的 secrets 中定义的 PERSONAL_TOKEN
+          deploy_key: ${{ secrets.DK }} # 使用 GitHub 仓库的 secrets 中定义的 PERSONAL_TOKEN
           EXTERNAL_REPOSITORY: DikiFive/DikiFive.github.io # 指定外部仓库的名称，格式为 '用户名/仓库名'
           PUBLISH_BRANCH: main # 指定推送到的远程分支名，这里是
           PUBLISH_DIR: ./public # 指定要部署的目录，通常是 Hugo 生成的静态文件目录

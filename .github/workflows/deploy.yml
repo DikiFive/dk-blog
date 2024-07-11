@@ -36,7 +36,9 @@ jobs:
             # 构建网站的步骤
             - name: Build Web
               # 运行 hugo 命令来生成静态网站文件
-              run: cd dk && hugo
+              run: |
+                cd dk
+                hugo
 
             # 部署网站的步骤
             - name: Deploy Web

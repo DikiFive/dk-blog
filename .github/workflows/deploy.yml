@@ -3,53 +3,51 @@ name: deploy
 
 # 定义触发工作流的事件
 on:
-    push: # 每次推送到仓库时触发
-    workflow_dispatch: # 允许手动触发工作流
-    schedule: # 定时触发
-        # Runs everyday at 8:00 AM（每天上午8点运行）
-        - cron: "0 0 * * *"
+  push: # 当仓库有新的推送时触发工作流
+  workflow_dispatch: # 允许手动触发工作流
+  schedule: # 定时触发工作流
+    # Runs everyday at 8:00 AM（每天上午8点运行）
+    - cron: "0 0 * * *"
 
 # 定义工作流中的作业
 jobs:
-    # 定义作业名称为 "build"
-    build:
-        # 指定作业在 Ubuntu 最新版本上运行
-        runs-on: ubuntu-latest
-        # 定义作业中的步骤
-        steps:
-            # 步骤名称为 "Checkout"，用于检出代码
-            - name: Checkout
-              # 使用 actions/checkout@v2 动作来检出代码
-              uses: actions/checkout@v2
-              with:
-                  submodules: true # 包含子模块
-                  fetch-depth: 0 # 获取所有提交历史
+  # 定义作业名称为 "build"
+  build:
+    # 指定作业在 Ubuntu 最新版本上运行
+    runs-on: ubuntu-latest
+    # 定义作业中的步骤
+    steps:
+      # 步骤名称为 "Checkout"，用于检出代码
+      - name: Checkout
+        # 使用 actions/checkout@v2 动作来检出代码
+        uses: actions/checkout@v2
+        with:
+          submodules: true # 包含子模块
+          fetch-depth: 0 # 获取所有提交历史
 
-            # 设置 Hugo 静态网站生成器
-            - name: Setup Hugo
-              # 使用 peaceiris/actions-hugo 动作来设置 Hugo
-              uses: peaceiris/actions-hugo@v2
-              with:
-                  # 使用最新版本的 Hugo
-                  hugo-version: "latest"
+      # 在这里可以添加其他您需要的步骤
 
-            # 构建网站的步骤
-            - name: Build Web
-              # 运行 hugo 命令来生成静态网站文件
-              run: hugo
+      # 设置 Hugo 静态网站生成器
+      - name: Setup Hugo
+        # 使用 peaceiris/actions-hugo 动作来设置 Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          # 使用最新版本的 Hugo
+          hugo-version: "latest"
 
-            # 部署网站的步骤
-            - name: Deploy Web
-              # 使用 peaceiris/actions-gh-pages 动作来部署网站到 GitHub Pages
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                  # 使用 GitHub Secrets 中定义的 PERSONAL_TOKEN
-                  PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-                  # 指定外部仓库的名称和所有者
-                  EXTERNAL_REPOSITORY: DikiFive/DikiFive.github.io
-                  # 指定发布到的分支名
-                  PUBLISH_BRANCH: main
-                  # 指定要发布的目录
-                  PUBLISH_DIR: ./public
-                  # 定义提交信息，使用触发部署的提交信息
-                  commit_message: ${{ github.event.head_commit.message }}
+      # 构建网站的步骤
+      - name: Build Web
+        # 运行 hugo 命令来生成静态网站文件
+        run: hugo
+
+      # 部署网站的步骤
+      - name: Deploy Web
+        # 使用 peaceiris/actions-gh-pages 动作来部署网站到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # 使用 GitHub 提供的 secrets.GITHUB_TOKEN 来授权访问仓库
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 指定要发布的目录
+          publish_dir: ./public
+          # 指定发布到的分支名，这里使用 'main' 作为部署分支
+          publish_branch: main

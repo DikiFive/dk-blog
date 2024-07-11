@@ -29,14 +29,14 @@ ignoreErrors = ["error-disable-taxonomy"]
 
 [params]
   # 网站的描述，用于HTML的元数据
-  description = "Hugo + Bear = :heart:"
+  description = "DKFV"
   # 网站图标的路径，应该是至少32px x 32px的正方形png文件
   favicon = "images/favicon.png"
   # 用于结构化数据模板的图片，显示在Twitter或Slack等平台的链接预览中
   images = ["images/share.png"]
 
   # 在Hugo的Open Graph结构化数据模板中使用的站点名称
-  title = "Hugo ʕ•ᴥ•ʔ Bear"
+  title = "DikiFive"
   # 主题默认在页面底部显示制作信息，可以关闭但建议保留
   hideMadeWithLine = true
   # 自定义日期显示格式，使用Hugo的Format函数文档中的格式

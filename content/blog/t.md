@@ -7,8 +7,4 @@ tags = [
     "syntax",
 ]
 +++
-1
-2
-3
-test3
-action test
+666

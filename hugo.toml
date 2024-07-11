@@ -5,7 +5,7 @@ baseURL = "https://dikifive.github.io"
 theme = 'hugo-bearblog'
 
 # 博客的基础元数据配置
-title = "dikifive's Blog"
+title = "DikiFive's Blog"
 author = "DikiFive"
 
 # 版权信息
@@ -30,6 +30,7 @@ ignoreErrors = ["error-disable-taxonomy"]
 [params]
   # 网站的描述，用于HTML的元数据
   description = "DKFV"
+
   # 网站图标的路径，应该是至少32px x 32px的正方形png文件
   favicon = "images/favicon.png"
   # 用于结构化数据模板的图片，显示在Twitter或Slack等平台的链接预览中
@@ -41,3 +42,6 @@ ignoreErrors = ["error-disable-taxonomy"]
   hideMadeWithLine = true
   # 自定义日期显示格式，使用Hugo的Format函数文档中的格式
   # dateFormat = "2006-01-02"
+
+    [params.contact]
+        email = 'info@example.org'

@@ -1,53 +1,46 @@
-# 定义工作流的名称
+# 定义工作流名称为 "deploy"
 name: deploy
 
 # 定义触发工作流的事件
 on:
-  push: # 当仓库有新的推送时触发工作流
-  workflow_dispatch: # 允许手动触发工作流
+  push: # 当仓库有新的推送时触发
+  workflow_dispatch: # 允许通过 GitHub Actions 工作流页面手动触发
   schedule: # 定时触发工作流
-    # Runs everyday at 8:00 AM（每天上午8点运行）
+    # Runs everyday at 8:00 AM（配置的计划任务，每天上午8点执行）
     - cron: "0 0 * * *"
 
 # 定义工作流中的作业
 jobs:
   # 定义作业名称为 "build"
   build:
-    # 指定作业在 Ubuntu 最新版本上运行
+    # 指定作业运行在 'ubuntu-latest' 版本的虚拟环境
     runs-on: ubuntu-latest
-    # 定义作业中的步骤
+    # 定义作业需要执行的步骤
     steps:
-      # 步骤名称为 "Checkout"，用于检出代码
+      # 步骤一：检出仓库代码
       - name: Checkout
-        # 使用 actions/checkout@v2 动作来检出代码
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2 # 使用 actions/checkout@v2 动作
         with:
-          submodules: true # 包含子模块
-          fetch-depth: 0 # 获取所有提交历史
+          submodules: true # 确保子模块也被检出
+          fetch-depth: 0 # 获取所有历史提交
 
-      # 在这里可以添加其他您需要的步骤
-
-      # 设置 Hugo 静态网站生成器
+      # 步骤二：设置 Hugo 环境
       - name: Setup Hugo
-        # 使用 peaceiris/actions-hugo 动作来设置 Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v2 # 使用 peaceiris 的 actions-hugo 动作来设置 Hugo
         with:
-          # 使用最新版本的 Hugo
-          hugo-version: "latest"
+          hugo-version: "latest" # 使用最新版本的 Hugo
 
-      # 构建网站的步骤
+      # 步骤三：构建网站
       - name: Build Web
-        # 运行 hugo 命令来生成静态网站文件
-        run: hugo
+        run: hugo # 运行 hugo 命令来生成静态网页文件
 
-      # 部署网站的步骤
+      # 步骤四：部署网站到 GitHub Pages
       - name: Deploy Web
-        # 使用 peaceiris/actions-gh-pages 动作来部署网站到 GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v3 # 使用 peaceiris 的 actions-gh-pages 动作来部署
         with:
-          # 使用 GitHub 提供的 secrets.GITHUB_TOKEN 来授权访问仓库
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # 指定要发布的目录
-          publish_dir: ./public
-          # 指定发布到的分支名，这里使用 'main' 作为部署分支
-          publish_branch: main
+          # 下面是传递给 actions-gh-pages 动作的参数
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # 使用 GitHub 仓库的 secrets 中定义的 PERSONAL_TOKEN
+          EXTERNAL_REPOSITORY: DikiFive/DikiFive.github.io # 指定外部仓库的名称，格式为 '用户名/仓库名'
+          PUBLISH_BRANCH: main # 指定推送到的远程分支名，这里是
+          PUBLISH_DIR: ./public # 指定要部署的目录，通常是 Hugo 生成的静态文件目录
+          commit_message: ${{ github.event.head_commit.message }} # 定义部署提交的信息，使用触发部署的提交信息

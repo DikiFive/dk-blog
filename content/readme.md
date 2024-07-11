@@ -6,8 +6,8 @@ cover = ""
 summary = ""
 +++
 
-简单分享
+# 简单分享
 
-# 个人博客技术分享
-联系方式：[bilibili](https://space.bilibili.com/32039719?spm_id_from=333.1007.0.0)
-邮箱： dikifivecn@gmail.com
+## 个人博客技术分享
+
+### 联系方式：[bilibili](https://space.bilibili.com/32039719?spm_id_from=333.1007.0.0)

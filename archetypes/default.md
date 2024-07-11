@@ -1,5 +1,8 @@
 +++
-title = '{{ replace .File.ContentBaseName "-" " " | title }}'
+title = ""
 date = {{ .Date }}
-draft = false
+author = "DikiFive"
+keywords = ["", ""]
+cover = ""
+summary = ""
 +++

@@ -5,8 +5,8 @@ name: deploy
 on:
   push: # 当仓库有新的推送时触发
     branches:
-      - main  # 设置触发部署的分支名称
-  pull_request:  # 当有新的拉取请求时触发，但不会执行deploy步骤
+      - main # 设置触发部署的分支名称
+  pull_request: # 当有新的拉取请求时触发，但不会执行deploy步骤
   workflow_dispatch: # 允许通过 GitHub Actions 工作流页面手动触发
   schedule: # 定时触发工作流
     # Runs everyday at 8:00 AM（配置的计划任务，每天上午8点执行）

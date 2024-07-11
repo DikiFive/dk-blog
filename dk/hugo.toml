@@ -1,52 +1,43 @@
-# Base URL used when generating links to your pages
-# Set to the URL for your site
+# 基础URL，用于生成页面链接，设置为您网站的URL
 baseURL = "https://dikifive.github.io"
 
-# The name of this wonderful theme ;-).
+# 使用的主题名称
 theme = 'hugo-bearblog'
 
-# Basic metadata configuration for your blog.
+# 博客的基础元数据配置
 title = "dikifive's Blog"
 author = "DikiFive"
+
+# 版权信息
 copyright = "Copyright © 2020, Jane Doe."
+
+# 网站使用的语言代码
 languageCode = "zh-cn"
 
-# Generate a nice robots.txt for SEO
+# 是否生成robots.txt以优化SEO
 enableRobotsTXT = true
 
-# Generate "Bearblog"-like URLs !only!, see https://bearblog.dev/.
+# 禁用某些页面类型的生成，例如分类页面
 disableKinds = ["taxonomy"]
+# 忽略禁用taxonomy时产生的错误
 ignoreErrors = ["error-disable-taxonomy"]
+
+# 定义不同页面类型的永久链接格式
 [permalinks]
   blog = "/:slug/"
   tags = "/blog/:slug"
 
 [params]
-  # The "description" of your website. This is used in the meta data of your generated html.
+  # 网站的描述，用于HTML的元数据
   description = "Hugo + Bear = :heart:"
-
-  # The path to your "favicon". This should be a square (at least 32px x 32px) png-file.
-  # Hint: It's good practise to also put a "favicon.ico"-file into your "static"-folder.
+  # 网站图标的路径，应该是至少32px x 32px的正方形png文件
   favicon = "images/favicon.png"
-
-  # These "images" are used for the structured data templates. This will show up, when
-  # services like Twitter or Slack want to generate a preview of a link to your site.
-  # See https://gohugo.io/templates/internal#twitter-cards and
-  # https://gohugo.io/templates/internal#open-graph.
+  # 用于结构化数据模板的图片，显示在Twitter或Slack等平台的链接预览中
   images = ["images/share.png"]
 
-  # Another "title" :-). This one is used as the site_name on the Hugo's internal
-  # opengraph structured data template.
-  # See https://ogp.me/ and https://gohugo.io/templates/internal#open-graph.
+  # 在Hugo的Open Graph结构化数据模板中使用的站点名称
   title = "Hugo ʕ•ᴥ•ʔ Bear"
-
-  # This theme will, by default, inject a made-with-line at the bottom of the page.
-  # You can turn it off, but we would really appreciate if you don’t :-).
-  # hideMadeWithLine = true
-
-  # By default, this theme displays dates with a format like "02 Jan, 2006", but
-  # you can customize it by setting the `dateFormat` param in your site's config
-  # file. See [Hugo's Format function docs](https://gohugo.io/functions/format/)
-  # for details. An example TOML config that uses [ISO
-  # 8601](https://en.wikipedia.org/wiki/ISO_8601) format:
+  # 主题默认在页面底部显示制作信息，可以关闭但建议保留
+  hideMadeWithLine = true
+  # 自定义日期显示格式，使用Hugo的Format函数文档中的格式
   # dateFormat = "2006-01-02"

@@ -74,11 +74,11 @@ createIssueManually = true
 # 是否开启无干扰模式
 distractionFreeMode = false
 
-# [[params.links]]
-# # 友情链接的标题
-# title = "Link"
-# # 友情链接的URL
-# href = "https://github.com/meik2333"
+[[params.links]]
+# 友情链接的标题
+title = "备用博客"
+# 友情链接的URL
+href = "https://dk-blog-cf.pages.dev/"
 
 [frontmatter]
 # frontmatter中可以指定文章最后修改时间的来源
